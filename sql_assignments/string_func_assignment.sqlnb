@@ -1,0 +1,259 @@
+cells:
+  - kind: 2
+    value: "CREATE TABLE Orders (\r
+
+      \    Order_ID NUMBER PRIMARY KEY,\r
+
+      \    Order_Date DATE,\r
+
+      \    Customer_ID VARCHAR2(10),\r
+
+      \    Customer_Name VARCHAR2(100),\r
+
+      \    Product_Category VARCHAR2(100),\r
+
+      \    Product_Name VARCHAR2(150),\r
+
+      \    Quantity NUMBER,\r
+
+      \    Unit_Price NUMBER(10,2),\r
+
+      \    Payment_Mode VARCHAR2(50),\r
+
+      \    Store_Location VARCHAR2(100)\r
+
+      );\r
+
+      \r\n"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- SET DEFINE OFF;\r
+
+      INSERT ALL\r
+
+      \  INTO Orders VALUES (1001, DATE '2026-02-01', 'C001', 'Ravi Kumar',
+      'Electronics', 'Wireless Mouse', 2, 799, 'UPI', 'Bangalore')\r
+
+      \  INTO Orders VALUES (1002, DATE '2026-02-02', 'C002', 'Sneha Reddy',
+      'Grocery', 'Basmati Rice 5kg', 1, 650, 'Credit Card', 'Hyderabad')\r
+
+      \  INTO Orders VALUES (1003, DATE '2026-02-03', 'C003', 'Arjun Mehta',
+      'Fashion', 'Men''s T-Shirt', 3, 499, 'Cash', 'Chennai')\r
+
+      \  INTO Orders VALUES (1004, DATE '2026-02-04', 'C004', 'Priya Sharma',
+      'Electronics', 'Bluetooth Speaker', 1, 1499, 'Debit Card', 'Mumbai')\r
+
+      \  INTO Orders VALUES (1005, DATE '2026-02-05', 'C005', 'Kiran Rao', 'Home
+      & Kitchen', 'Mixer Grinder', 1, 2499, 'UPI', 'Bangalore')\r
+
+      \  INTO Orders VALUES (1006, DATE '2026-02-06', 'C006', 'Neha Verma',
+      'Beauty', 'Face Cream', 4, 299, 'Credit Card', 'Delhi')\r
+
+      \  INTO Orders VALUES (1007, DATE '2026-02-07', 'C007', 'Rahul Das',
+      'Grocery', 'Cooking Oil 1L', 5, 180, 'Cash', 'Kolkata')\r
+
+      \  INTO Orders VALUES (1008, DATE '2026-02-08', 'C008', 'Anjali Nair',
+      'Fashion', 'Women''s Jeans', 2, 1199, 'UPI', 'Kochi')\r
+
+      \  INTO Orders VALUES (1009, DATE '2026-02-09', 'C009', 'Suresh Patel',
+      'Electronics', 'Smartphone', 1, 15999, 'Debit Card', 'Ahmedabad')\r
+
+      \  INTO Orders VALUES (1010, DATE '2026-02-10', 'C010', 'Meena Iyer',
+      'Home & Kitchen', 'Pressure Cooker', 1, 1899, 'Credit Card', 'Pune')\r
+
+      SELECT * FROM dual;"
+    languageId: oracle-sql
+  - kind: 1
+    value: "STRING FUNCTIONS – 20 Questions\r
+
+      1. Write a query to convert all customer names to uppercase.\r
+
+      2. Extract the first 5 characters from Product_Name.\r
+
+      3. Find the length of each Customer_Name.\r
+
+      4. Replace the word \"Rice\" with \"Premium Rice\" in Product_Name.\r
+
+      5. Remove leading and trailing spaces from Customer_Name.\r
+
+      6. Concatenate First_Name and Last_Name as Full_Name.\r
+
+      7. Find customers whose names start with 'A'.\r
+
+      8. Extract the domain name from Email_ID.\r
+
+      9. Find the position of '@' in Email_ID.\r
+
+      10. Reverse the Product_Name.\r
+
+      11. Convert the first letter of each word in Product_Name to uppercase.\r
+
+      12. Extract the last 3 characters from Order_ID.\r
+
+      13. Count how many times letter 'a' appears in Customer_Name.\r
+
+      14. Mask the last 4 digits of a phone number.\r
+
+      15. Split Full_Name into First_Name and Last_Name.\r
+
+      16. Remove all special characters from Product_Code.\r
+
+      17. Compare two columns ignoring case sensitivity.\r
+
+      18. Find customers whose name contains 'kumar'.\r
+
+      19. Pad Order_ID with leading zeros to make it 6 digits.\r
+
+      20. Extract substring between two characters."
+    languageId: markdown
+  - kind: 2
+    value: SELECT * FROM ORDERS;
+    languageId: oracle-sql
+  - kind: 2
+    value: "--1 Write a query to convert all customer names to uppercase.\r
+
+      \r
+
+      SELECT customer_name, upper(customer_name) as upper_customer_name from
+      ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "--2 Extract the first 5 characters from Product_Name.\r
+
+      \r
+
+      SELECT product_name, substr(product_name, 1, 5) Extract_char from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "--3 Find the length of each Customer_Name.\r
+
+      \r
+
+      select customer_name, length(customer_name) len_c_name from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "--4 Replace the word \"Rice\" with \"Premium Rice\" in Product_Name.\r
+
+      \r
+
+      select product_name, replace(product_name, 'Rice', 'Premium Rice')
+      replacing_p_name from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "INSERT INTO Orders VALUES (1011, DATE '2026-03-12', 'C011', '  Monal  ',
+      'Home & Kitchen', 'Pressure Cooker', 1, 1899, 'Credit Card', 'Pune')\r\n"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 5. Remove leading and trailing spaces from Customer_Name.\r
+
+      \r
+
+      select customer_name, TRIM(customer_name) leading_trailing from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 6. Concatenate First_Name and Last_Name as Full_Name.\r
+
+      \r
+
+      select first_name, last_name, first_name || ' ' || last_name full_name
+      from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 7. Find customers whose names start with 'A'.\r
+
+      \r
+
+      SELECT customer_name from ORDERS where upper(customer_name) like ('A%') ;"
+    languageId: oracle-sql
+  - kind: 2
+    value: -- 8. Extract the domain name from Email_ID.
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 9. Find the position of '@' in Email_ID.\r
+
+      \r\n"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 10. Reverse the Product_Name.\r
+
+      \r
+
+      select product_name, reverse(product_name) reverse_name from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 11. Convert the first letter of each word in Product_Name to
+      uppercase.\r
+
+      \r
+
+      select product_name, initcap(product_name) formatted_name from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 12. Extract the last 3 characters from Order_ID.\r
+
+      \r
+
+      SELECT order_id, substr(order_id, -3) extract_str from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 13. Count how many times letter 'a' appears in Customer_Name.\r
+
+      \r
+
+      select customer_name, length(customer_name) -
+      length(replace(lower(customer_name), 'a', '')) as a_count from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 14. Mask the last 2 digits of a order id.\r
+
+      \r
+
+      select order_id, substr(order_id, 1, length(order_id)-2) || '**' mask_id
+      from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 15. Split Full_Name into First_Name and Last_Name.\r
+
+      \r
+
+      select customer_name, substr(customer_name, 1, instr(CUSTOMER_NAME, '
+      ')-1) as first_name,\r
+
+      substr(customer_name, instr(CUSTOMER_NAME, ' ')+1) as last_name from
+      ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 16. Remove all special characters from Product_Code.\r
+
+      \r\n"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 17. Compare two columns ignoring case sensitivity.\r
+
+      \r
+
+      select * from ORDERS where lower(ORDER_ID) = lower(CUSTOMER_ID);"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 18. Find customers whose name contains 'kumar'.\r
+
+      \r
+
+      select customer_name from ORDERS where lower(CUSTOMER_NAME) like
+      ('%kumar%');"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 19. Pad Order_ID with leading zeros to make it 6 digits.\r
+
+      \r
+
+      select order_id, lpad(order_id, 6, 0) as padding_orderid from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 20. Extract substring between two characters.\r
+
+      \r\n"
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
