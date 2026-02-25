@@ -1,0 +1,196 @@
+cells:
+  - kind: 1
+    value: "#### NUMERICAL FUNCTIONS ASSIGNMENT"
+    languageId: markdown
+  - kind: 2
+    value: SET DEFINE OFF;
+    languageId: oracle-sql
+  - kind: 2
+    value: select * from orders;
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 1. Round Unit_Price to 2 decimal places.\r
+
+      \r
+
+      SELECT UNIT_PRICE, round(UNIT_PRICE, 2) rounded FROM ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 2. Find total sales per order.\r
+
+      \r
+
+      select quantity, unit_price, quantity * unit_price tota_sales from
+      orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 3. Calculate average order value.\r
+
+      \r
+
+      SELECT AVG(quantity * unit_price) average_order_value from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 4. Find highest product price.\r
+
+      \r
+
+      select max(unit_price) heighest_p_price from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 5. Find lowest product price.\r
+
+      \r
+
+      select min(unit_price) lowest_product_price from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- To create a new column\r
+
+      alter table orders\r
+
+      add mrp NUMBER(10, 2);"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- To insert row values in particular column \r
+
+      update ORDERS\r
+
+      set mrp = unit_price + 200;\r
+
+      COMMIT;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 6. Calculate percentage discount applied.\r
+
+      \r
+
+      SELECT mrp, unit_price, round((mrp - unit_price) / mrp * 100 , 2) discount
+      from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 7. Find modulus of Quantity divided by 2.\r
+
+      \r
+
+      SELECT quantity, MOD(quantity, 2) mod_of_quantity FROM ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 8. Convert negative values to positive.\r
+
+      \r
+
+      SELECT abs(-5) pos FROM dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 9. Truncate price without rounding.\r
+
+      \r
+
+      select unit_price, trunc(unit_price) trunc_price from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 10. Find square root of total sales.\r
+
+      \r
+
+      select round(QUANTITY * unit_price, 2) total_sales, \r
+
+      round(sqrt(quantity * unit_price), 2) sqrt_total_p from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 11. Calculate exponential value of a number.\r
+
+      \r
+
+      select exp(1) exp_val from DUAL;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 12. Calculate power of 2^5.\r
+
+      \r
+
+      select power(2, 5) pow from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 13. Find absolute difference between two prices.\r
+
+      \r
+
+      select mrp, unit_price, abs(mrp - unit_price) abs_diff_bw from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 14. Calculate sales growth percentage.\r
+
+      \r
+
+      select order_id, quantity*unit_price total_sales, \r
+
+      lag(quantity * unit_price) over (ORDER by order_id) previous_sales,\r
+
+      round((quantity * unit_price) - lag(quantity * unit_price) over (order by
+      order_id) / lag(quantity * unit_price) over (order by ORDER_ID) * 100, 2)
+      sales_growth_pct from orders; "
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 15. Find random number between 1 and 100.\r
+
+      \r
+
+      select DBMS_RANDOM.VALUE(1, 100) random_number from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 16. Divide total sales by number of orders.\r
+
+      \r
+
+      select sum(quantity * unit_price) / count(*) as avg_order_value from
+      ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 17. Find ceiling value of price.\r
+
+      \r
+
+      select ceil(999.03) ceiling_value from DUAL;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 18. Find floor value of price.\r
+
+      \r
+
+      select floor(1234.13) floor_value from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 19. Convert decimal to integer.\r
+
+      \r
+
+      select round(234.634) int_round,\r
+
+      trunc(234.634) int_trunc,\r
+
+      ceil(234.634) int_ceil,\r
+
+      floor(234.634) int_floor\r
+
+      from DUAL;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 20. Calculate compound interest.\r
+
+      \r
+
+      -- formula = P * POWER(1 + R/100)^N - P\r
+
+      -- p = 1000\r
+
+      -- r = 5\r
+
+      -- n = 3\r
+
+      \r
+
+      SELECT round(1000 * power(1 + 5/100, 3) - 1000, 2) compund_interst from
+      dual;"
+    languageId: oracle-sql
