@@ -1,0 +1,167 @@
+cells:
+  - kind: 1
+    value: "#### DATE FUNCTION ASSIGNMENT"
+    languageId: markdown
+  - kind: 2
+    value: "-- 1. Extract year from Order_Date.\r
+
+      \r
+
+      select order_date, to_char(order_date, 'yyyy') extrracting_year from
+      orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 2. Extract month from Order_Date.\r
+
+      \r
+
+      select order_date, to_char(order_date, 'month') extracting_month from
+      ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 3. Extract day from Order_Date.\r
+
+      \r
+
+      select order_date, to_char(order_date, 'day') extracting_day from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 4. Find current date.\r
+
+      \r
+
+      select sysdate as current_date from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 5. Find current timestamp.\r
+
+      \r
+
+      select current_timestamp from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 6. Add 7 days to Order_Date.\r
+
+      \r
+
+      select order_date, order_date + 7 adding_new_date from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 7. Subtract 30 days from Order_Date.\r
+
+      \r
+
+      select order_date, order_date - 30 as subtracting_date from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 8. Find difference between two dates.\r
+
+      \r
+
+      select sysdate, order_date, trunc(sysdate - order_date) as diff_bw_date
+      from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 9. Find number of months between two dates.\r
+
+      \r
+
+      select trunc(months_between(order_date, sysdate)) dif_bw_months from
+      ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 10. Find last day of the month.\r
+
+      \r
+
+      select last_day(ORDER_DATE) from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 11. Get first day of the year.\r
+
+      \r
+
+      select trunc(sysdate, 'YEAR') from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 12. Format date as 'DD-MM-YYYY'.\r
+
+      \r
+
+      select to_char(sysdate, 'DD-MM-YYYY') FORMAT_DATE from DUAL;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 13. Convert string to date.\r
+
+      \r
+
+      select to_date('25-02-2026', 'dd/mm/yyyy') str_to_date from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 14. Convert date to string.\r
+
+      \r
+
+      select to_char(sysdate, 'dd-mm-yyyy') date_str from DUAL;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 15. Find week number of the year.\r
+
+      \r
+
+      select to_char(sysdate, 'ww') current_week from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 16. Find day name from date.\r
+
+      \r
+
+      select order_date, to_char(order_date, 'day') day_name from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 17. Find quarter of the year.\r
+
+      \r
+
+      select order_date, to_char(order_date, 'Q') quater from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 18. Calculate age from DOB.\r
+
+      \r
+
+      select  trunc(months_between(sysdate, to_date('09-08-2003',
+      'dd-mm-yyyy'))/12) age from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 19. Check if date is weekend.\r
+
+      \r
+
+      select order_date, to_char(order_date, 'day') day_name,\r
+
+      CASE\r
+
+      \    when to_char(order_date, 'd') in ('1', '7') then 'Weekend'\r
+
+      \    else 'Weekday'\r
+
+      \    end as day_type from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 20. Find next Monday after a given date.\r
+
+      \r
+
+      select order_date, next_day(order_date, 'monday') next_monday from
+      orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
