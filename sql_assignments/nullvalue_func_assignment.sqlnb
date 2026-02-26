@@ -1,0 +1,173 @@
+cells:
+  - kind: 1
+    value: "#### NULL VALUE FUNCTIONS ASSIGNMENT"
+    languageId: markdown
+  - kind: 2
+    value: "-- 1. Replace NULL price with 0.\r
+
+      \r
+
+      select unit_price, nvl(unit_price, 0) replacing_null from orders; "
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 2. Replace NULL Customer_Name with 'Unknown'.\r
+
+      \r
+
+      select customer_name, nvl(customer_name, 'Unknown') replaing_null from
+      orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 3. Count NULL values in Product_Name.\r
+
+      \r
+
+      select COUNT(case when product_name is null then 1 end) as null_count from
+      orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 4. Find rows where Order_Date is NULL.\r
+
+      \r
+
+      select order_date from ORDERS where order_date IS NULL;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 5. Use COALESCE to return first non-null value.\r
+
+      \r
+
+      select coalesce(unit_price, 0) UNIT_PRICE from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 6. Use NVL to replace NULL values.\r
+
+      \r
+
+      select nvl(customer_name, 'unknown') customer_name from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 7. Use IFNULL function. \r
+
+      -- oracle doesn't support ifnull and ifnull == nvl \r
+
+      \r
+
+      select nvl('product_name', 0) product_nam from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 8. Check if column is NULL.\r
+
+      \r
+
+      select order_id, nvl2(order_id, 'no', 'yes') check_null from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 9. Check if column is NOT NULL.\r
+
+      \r
+
+      select order_id, nvl2(order_id, 'yes', 'no') check_null from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 10. Use NULLIF between two columns.\r
+
+      \r
+
+      select nullif(unit_price, mrp) checking_cols from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 11. Replace blank values with NULL.\r
+
+      \r
+
+      select nullif(product_name, '') product_ from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 12. Count non-null values.\r
+
+      \r
+
+      select count(case \r
+
+      when product_name is not null then 1 end) count_non_null \r
+
+      from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 13. Filter records where price is NULL or 0.\r
+
+      \r
+
+      select * from orders where UNIT_PRICE is null or unit_price = 0;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 14. Use CASE to handle NULL values.\r
+
+      \r
+
+      select product_name,\r
+
+      CASE\r
+
+      \    when product_name is not null then 'Available'\r
+
+      \    else 'Not available' end checking_value\r
+
+      \    from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 15. Compare NULL values properly.\r
+
+      \r
+
+      select * from orders where PRODUCT_NAME is not null;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 16. Handle NULL in aggregation.\r
+
+      \r
+
+      select count(nvl(mrp, 0)) from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 17. Find average excluding NULL values.\r
+
+      \r
+
+      select avg(unit_price) excluding_null from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 18. Find sum ignoring NULL values.\r
+
+      \r
+
+      select sum(unit_price) excluding_null from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 19. Identify columns containing NULL using metadata.\r
+
+      \r\n"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 20. Convert NULL to default system date.\r
+
+      \r
+
+      select nvl(order_date, sysdate) final_order_date from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
