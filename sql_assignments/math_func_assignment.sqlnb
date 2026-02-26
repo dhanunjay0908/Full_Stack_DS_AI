@@ -1,0 +1,159 @@
+cells:
+  - kind: 1
+    value: "#### MATHEMATIC FUNCTIONS ASSIGNMENT."
+    languageId: markdown
+  - kind: 2
+    value: "-- 1. Find sine value of an angle.\r
+
+      \r
+
+      select sin(acos(-1)/6) as sine_val from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 2. Find cosine value of an angle.\r
+
+      \r
+
+      select cos(acos(-1)/6) as cosine_val from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 3. Find tangent value.\r
+
+      \r
+
+      select tan(acos(-1)/6) tangent_val from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 4. Convert degrees to radians.\r
+
+      \r
+
+      select tan(30 * acos(-1) / 180) convert_rad from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 5. Convert radians to degrees.\r
+
+      \r
+
+      select (acos(-1)/2 * 180/acos(-1)) rad_deg from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 6. Find logarithm (base 10) of a number.\r
+
+      \r
+
+      select log(10, 100) log_base from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 7. Find natural log of a number.\r
+
+      \r
+
+      select ln(5)  from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 8. Find square of a number.\r
+
+      \r
+
+      select power(12, 2) square from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 9. Find cube of a number.\r
+
+      \r
+
+      select power(10, 3) cube from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 10. Calculate factorial of a number.\r
+
+      \r
+
+      select round(exp(sum(ln(level)))) Factorial_5 from dual\r
+
+      connect by level <= 5;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 11. Find greatest value among three numbers.\r
+
+      \r
+
+      select greatest(10, 45, 24) greatest from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 12. Find least value among three numbers.\r
+
+      \r
+
+      select least(10, 45, 24) least from dual;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 13. Calculate variance of sales.\r
+
+      \r
+
+      select variance(quantity * unit_price) variance from orders"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 14. Calculate standard deviation of sales.\r
+
+      \r
+
+      select STDDEV(quantity * unit_price) as sales_stddev from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 15. Find average deviation.\r
+
+      \r
+
+      -- Average Deviation = AVG(∣x−mean∣)\r
+
+      select AVG(abs(UNIT_PRICE * QUANTITY - (select avg(unit_price * QUANTITY)
+      from orders))) avg_deviation  from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 16. Calculate geometric mean.\r
+
+      \r
+
+      -- Geometric Mean = EXP(AVG(LN(x)))\r
+
+      select exp(avg(ln(unit_price))) geometric_mean from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 17. Calculate harmonic mean.\r
+
+      \r
+
+      -- Formula: number of rows / sum(1 / x)\r
+
+      select count(*) / sum(1/ quantity) harmonic_mean from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 18. Find sum of squares.\r
+
+      \r
+
+      select sum(power(quantity, 2)) squares from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 19. Calculate correlation between two columns.\r
+
+      \r
+
+      select corr(mrp, unit_price) correlation from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 20. Calculate regression slope.\r
+
+      \r
+
+      select REGR_SLOPE(unit_price, QUANTITY) regresion_slope from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
