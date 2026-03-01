@@ -1,0 +1,415 @@
+cells:
+  - kind: 1
+    value: "#### ANALYTICAL FUNCTIONS ASSIGNMENT"
+    languageId: markdown
+  - kind: 2
+    value: "-- 1. Assign row numbers to each order.\r
+
+      \ \r
+
+      select ROW_NUMBER() over (order by order_id) as row_num, order_id,
+      order_date from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 2. Rank products by price.\r
+
+      \r
+
+      select unit_price, rank() over (order by unit_price DESC) price_ranking
+      from ORDERS"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 3. Dense rank products by sales.\r
+
+      \r
+
+      select unit_price*quantity sales, DENSE_RANK() over (order by
+      unit_price*QUANTITY desc) sales_dense_rank from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 4. Find running total of sales.\r
+
+      \r
+
+      select order_id, \r
+
+      unit_price*quantity sales, sum(unit_price*quantity) over (order by
+      ORDER_ID) as running_total\r
+
+      from orders;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 5. Calculate cumulative sum by month.\r
+
+      \r
+
+      select trunc(order_date, 'mm') month, sum(unit_price * quantity)
+      monthly_sales,\r
+
+      sum(sum(unit_price * quantity)) over (order by trunc(order_date, 'mm'))
+      cummulative_sales\r
+
+      from ORDERS\r
+
+      group by trunc(ORDER_DATE, 'mm')\r
+
+      order by month;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 6. Find moving average of last 3 days.\r
+
+      \r
+
+      select trunc(order_date) as day,\r
+
+      sum(unit_price*quantity) as daily_sales,\r
+
+      avg(sum(unit_price * quantity)) over (\r
+
+      \    order by trunc(order_date)\r
+
+      \    rows between 2 PRECEDING and current row\r
+
+      ) avg_of_last_3_days\r
+
+      from ORDERS\r
+
+      group by trunc(ORDER_DATE)\r
+
+      order by day;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 7. Calculate lag of previous day sales.\r
+
+      \r
+
+      -- select trunc(order_date) day, sum(quantity * unit_price) daily_sales,\r
+
+      -- lag(sum(quantity * unit_price)) over (order by trunc(order_date))
+      lag_of_prevday_sales\r
+
+      -- FROM ORDERS \r
+
+      -- GROUP by trunc(ORDER_DATE)\r
+
+      -- order by day;\r
+
+      \r
+
+      select day,\r
+
+      daily_sales,\r
+
+      LAG(daily_sales) over (order by day) lag_of_prevday_sales\r
+
+      from (\r
+
+      \    select trunc(order_date) day,\r
+
+      \    sum(unit_price * quantity) daily_sales\r
+
+      \    from orders\r
+
+      \    group by trunc(order_date)\r
+
+      )\r
+
+      order by day;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 8. Calculate lead of next day sales.\r
+
+      \r
+
+      -- select trunc(order_date) day,\r
+
+      -- sum(unit_price * quantity) daily_sales,\r
+
+      -- LEAD(sum(unit_price * quantity)) over (order by trunc(order_date))
+      lead_of_nextday_sales\r
+
+      -- from ORDERS\r
+
+      -- group by trunc(ORDER_DATE)\r
+
+      -- order by day;\r
+
+      \r
+
+      select day,\r
+
+      daily_sales,\r
+
+      lead(daily_sales) over (order by day) lead_of_next_sales\r
+
+      from (\r
+
+      \    select trunc(order_date) day,\r
+
+      \    sum(unit_price * quantity) daily_sales\r
+
+      \    from orders\r
+
+      \    group by trunc(order_date)\r
+
+      )\r
+
+      order by day;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 9. Find difference between current and previous sale.\r
+
+      \r
+
+      select day,\r
+
+      daily_sales,\r
+
+      daily_sales - LAG(daily_sales, 1, 0) over (order by day)
+      diff_bw_prevday_sales\r
+
+      from (\r
+
+      \    select trunc(order_date) day,\r
+
+      \    sum(unit_price * quantity) daily_sales\r
+
+      \    from orders\r
+
+      \    group by trunc(order_date)\r
+
+      )\r
+
+      order by day;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 10. Partition sales by region.\r
+
+      \r
+
+      select customer_id, PRODUCT_CATEGORY, \r
+
+      (unit_price * QUANTITY) sales, sum(unit_price * QUANTITY) OVER (\r
+
+      partition by PRODUCT_CATEGORY\r
+
+      order by CUSTOMER_ID\r
+
+      ) sales_region\r
+
+      from ORDERS;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 11. Find top 3 products per category.\r
+
+      \r
+
+      SELECT *\r
+
+      FROM (\r
+
+      \    SELECT customer_id,\r
+
+      \           product_category,\r
+
+      \           unit_price * quantity AS sales,\r
+
+      \           ROW_NUMBER() OVER (\r
+
+      \               PARTITION BY product_category\r
+
+      \               ORDER BY unit_price * quantity DESC\r
+
+      \           ) AS part_category\r
+
+      \    FROM orders\r
+
+      )\r
+
+      WHERE part_category <= 3;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 12. Find bottom 2 customers by sales.\r
+
+      \r
+
+      SELECT customer_id,\r
+
+      product_category,\r
+
+      sales,\r
+
+      sales_rank\r
+
+      FROM (\r
+
+      \    SELECT customer_id,\r
+
+      \           product_category,\r
+
+      \           unit_price * quantity AS sales,\r
+
+      \           ROW_NUMBER() OVER (\r
+
+      \               PARTITION BY product_category\r
+
+      \               ORDER BY unit_price * quantity \r
+
+      \           ) AS sales_rank\r
+
+      \    FROM orders\r
+
+      ) ranked_orders\r
+
+      WHERE sales_rank <= 2;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 13. Calculate percentage of total sales.\r
+
+      \r
+
+      select customer_id, sum(quantity * UNIT_PRICE) sales,\r
+
+      sum(quantity * UNIT_PRICE) * 100.0 / sum(sum(quantity * UNIT_PRICE)) over
+      () sales_percentage\r
+
+      from orders\r
+
+      group by CUSTOMER_ID\r
+
+      order by customer_id;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 14. Calculate NTILE distribution of customers.\r
+
+      \r
+
+      select customer_id,\r
+
+      total_sales,\r
+
+      ntile(3) over (order by total_sales DESC) sales_rank\r
+
+      from(\r
+
+      \    select customer_id,\r
+
+      \    sum(quantity * unit_price) total_sales\r
+
+      \    from ORDERS\r
+
+      \    group by customer_id\r
+
+      ) t;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 15. Find first order per customer.\r
+
+      \r
+
+      select *\r
+
+      from (\r
+
+      \    select o.*,\r
+
+      \    ROW_NUMBER() over (PARTITIOn by customer_id order by order_date) rn\r
+
+      \    from orders o\r
+
+      )\r
+
+      where rn = 1;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "INSERT INTO Orders VALUES \r
+
+      (1011, DATE '2026-02-12', 'C001', 'Ravi Kumar', 'Electronics', 'Keyboard',
+      1, 999, 'UPI', 'Bangalore', 150);\r
+
+      \r
+
+      INSERT INTO Orders VALUES \r
+
+      (1012, DATE '2026-01-28', 'C001', 'Ravi Kumar', 'Grocery', 'Sugar 1kg', 2,
+      45, 'Cash', 'Bangalore', 50);\r
+
+      COMMIT;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 16. Find last order per customer.\r
+
+      \r
+
+      SELECT *\r
+
+      from(select o.*,\r
+
+      row_number() over (partition by customer_id order by order_date desc) rn\r
+
+      from orders o\r
+
+      )\r
+
+      WHERE rn = 1;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 17. Calculate average salary within department.\r
+
+      \r
+
+      -- we dont have depatment col so this is related\r
+
+      -- Calculate average unit price within product_category.\r
+
+      select product_category, avg(unit_price)  avg_unit_price\r
+
+      from ORDERS\r
+
+      group by PRODUCT_CATEGORY;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 18. Compare current row with max value in partition.\r
+
+      \r
+
+      select customer_id,\r
+
+      order_id,\r
+
+      unit_price * quantity order_amount,\r
+
+      max(unit_price*quantity) over (partition by customer_id)
+      max_order_amount,\r
+
+      case\r
+
+      when unit_price*quantity = max(unit_price*quantity) over (partition by
+      customer_id)\r
+
+      then 'yes' else 'no' end is_max_order\r
+
+      from ORDERS;\r\n"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 19. Identify duplicate records using ROW_NUMBER.\r
+
+      \r
+
+      select *\r
+
+      from(SELECT\r
+
+      o.*,\r
+
+      row_number() over (partition by CUSTOMER_NAME order by o.ORDER_ID) rn\r
+
+      from orders o)\r
+
+      where rn >1;"
+    languageId: oracle-sql
+  - kind: 2
+    value: "-- 20. Find cumulative distinct count.\r
+
+      \r\n"
+    languageId: oracle-sql
